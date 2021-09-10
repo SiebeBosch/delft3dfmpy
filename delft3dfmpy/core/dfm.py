@@ -1372,7 +1372,7 @@ class Structures:
             'useVelocityHeight': usevelocityheight            
         }
     
-    def add_bridge(self, id, branchid, chainage, length, bedlevel, upperheight, lowerheight,crosssection,
+    def add_bridge(self, id, branchid, chainage, length, shift, upperheight, lowerheight,crosssection,
                    inletlosscoeff,outletlosscoeff,allowedflowdir='both',
                    frictiontype='Strickler', frictionvalue=75.0):
         """
@@ -1396,7 +1396,7 @@ class Structures:
             "chainage": chainage,            
             "allowedFlowDir": allowedflowdir,
             "csDefId": crosssection,
-            "bedLevel": bedlevel,
+            "shift": shift,
             "inletLossCoeff": inletlosscoeff,
             "outletLossCoeff": outletlosscoeff,            
             "frictionType": frictiontype,

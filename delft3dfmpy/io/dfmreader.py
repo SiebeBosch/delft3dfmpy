@@ -129,7 +129,7 @@ class StructuresIO:
                 branchid=bridge.branch_id,
                 chainage=bridge.branch_offset,
                 length=bridge.lengte,
-                bedlevel=bridge.bedlevel,
+                shift=bridge.shift,
                 upperheight=bridge.hoogtebovenzijde,
                 lowerheight=bridge.hoogteonderzijde,                
                 crosssection=bridge.crosssection,

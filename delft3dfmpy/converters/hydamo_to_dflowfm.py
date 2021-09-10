@@ -242,18 +242,18 @@ def generate_bridges(bridges, yz_profiles=None, parametrised_profiles=None):
 
     bridges_dfm = bridges.copy().astype('object')
     bridges_dfm['crosssection'] = [{} for _ in range(len(bridges_dfm))]
-    bridges_dfm['bedlevel'] = [{} for _ in range(len(bridges_dfm))]
+    bridges_dfm['shift'] = [{} for _ in range(len(bridges_dfm))]
     
     for bridge in bridges.itertuples():        
         # first search in yz-profiles
         prof = yz_profiles[yz_profiles['codegerelateerdobject']==bridge.code]
         if len(prof) > 0:
-            bedlevel = np.min([c[2] for c in prof.geometry[0].coords[:]])  
+            shift = np.min([c[2] for c in prof.geometry[0].coords[:]])  
             profile_id=prof.code.values[0]
         else:
             # if not found, check the parametrised profiles
             prof = parametrised_profiles[parametrised_profiles['codegerelateerdobject']==bridge.code]
-            bedlevel = (prof['bodemhoogtebovenstrooms'] + prof['bodemhoogtebenedenstrooms'])/2.
+            shift = (prof['bodemhoogtebovenstrooms'] + prof['bodemhoogtebenedenstrooms'])/2.
            
         if len(prof)==0:
             # return an error it is still not found
@@ -261,7 +261,7 @@ def generate_bridges(bridges, yz_profiles=None, parametrised_profiles=None):
         
         profile_id=prof.code.values[0]
         bridges_dfm.at[bridge.Index, 'crosssection'] = profile_id
-        bridges_dfm.at[bridge.Index, 'bedlevel'] = float(bedlevel)
+        bridges_dfm.at[bridge.Index, 'shift'] = float(shift)
              
     return bridges_dfm
           

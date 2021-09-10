@@ -188,7 +188,7 @@ class DFlowFMWriter:
         filepath = os.path.join(self.output_dir, 'structure.ini')
         with open(filepath, 'w') as f:
             # write header
-            self._write_header(f, filetype='structure', fileversion=2.00)
+            self._write_header(f, filetype='structure', fileversion=3.00)
 
             # Culverts
             if any(self.dflowfmmodel.structures.culverts):
@@ -622,6 +622,7 @@ class DFlowFMWriter:
                  f.write('pause\n')
 
         # coupling XML
+        print("Now writing the DIMR_CONFIG XML file")
         FM_comp_name = 'DFM'        
         with open(os.path.join(self.output_dir, 'dimr_config.xml'),'w') as f:       
                  f.write('<?xml version="1.0" encoding="utf-8" standalone="yes"?>\n')
